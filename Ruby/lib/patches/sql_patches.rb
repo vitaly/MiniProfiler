@@ -104,9 +104,6 @@ if SqlPatches.class_exists? "PG::Result"
       # dont leak more than 10k ever
       @prepare_map = {} if @prepare_map.length > 1000
 
-      current = ::Rack::MiniProfiler.current
-      return prepare_without_profiling(*args,&blk) unless current && current.measure
-
       prepare_without_profiling(*args,&blk)
     end
 
